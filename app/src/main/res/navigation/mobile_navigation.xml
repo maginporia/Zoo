@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.momo.zoo.ui.home.HomeFragment"
+        android:label="台北市立動物園"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_pavilion"
+            app:destination="@id/nav_pavilion" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_pavilion"
+        android:name="com.momo.zoo.ui.pavilion.PavilionFragment"
+        android:label=""
+        tools:layout="@layout/fragment_pavilion">
+        <argument
+            android:name="dataPosition"
+            app:argType="com.momo.zoo.data.DataModel$Result$DetailResult" />
+    </fragment>
+
+</navigation>
