@@ -66,6 +66,7 @@ class HomeFragment : Fragment(), EpoxyController.DetailCallbacks {
 
     override fun onDetailItemClick(data: ZooData.Result.DetailResult, it: View) {
         val extras = FragmentNavigatorExtras(
+            it.findViewById<TextView>(R.id.textView2) to (data.id).toString() + "title",
             it.findViewById<ImageView>(R.id.imageView2) to (data.id).toString() + "image",
             it.findViewById<TextView>(R.id.textView3) to (data.id).toString() + "text",
             it.findViewById<TextView>(R.id.textView4) to (data.id).toString() + "text2"

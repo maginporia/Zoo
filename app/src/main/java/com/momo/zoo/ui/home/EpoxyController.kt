@@ -15,6 +15,7 @@ class EpoxyController(private val callbacks: DetailCallbacks) :
                 title(it.eName)
                 content(it.eInfo)
                 photo(Uri.parse(it.ePicURL))
+                titleTransition(it.id.toString() + "title")
                 imageTransition(it.id.toString() + "image")
                 textTransition(it.id.toString() + "text")
                 text2Transition(it.id.toString() + "text2")

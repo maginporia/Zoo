@@ -1,5 +1,7 @@
 package com.momo.zoo.ui.pavilion
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,8 +35,8 @@ class PavilionFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val args: PavilionFragmentArgs by navArgs()
 
+        val args: PavilionFragmentArgs by navArgs()
         with(mBinding) {
             imageView3.transitionName = args.data.id.toString() + "image"
             textView5.transitionName = args.data.id.toString() + "text"
@@ -50,7 +52,10 @@ class PavilionFragment : Fragment() {
                 textView6.text = args.data.eMemo
             }
             textView7.text = args.data.eCategory
-
+            textView8.setOnClickListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(args.data.eURL))
+                startActivity(browserIntent)
+            }
             (activity as AppCompatActivity).supportActionBar?.setTitle(args.data.eName)
         }
     }

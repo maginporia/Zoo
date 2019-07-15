@@ -26,6 +26,10 @@
             type="android.view.View.OnClickListener" />
 
         <variable
+            name="titleTransition"
+            type="String" />
+
+        <variable
             name="imageTransition"
             type="String" />
 
@@ -65,6 +69,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="@{title}"
+            android:transitionName="@{titleTransition}"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent"
