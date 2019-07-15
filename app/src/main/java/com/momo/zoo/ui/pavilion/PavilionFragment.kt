@@ -36,22 +36,22 @@ class PavilionFragment : Fragment() {
         val args: PavilionFragmentArgs by navArgs()
 
         with(mBinding) {
-            imageView3.transitionName = args.dataPosition._id.toString() + "image"
-            textView5.transitionName = args.dataPosition._id.toString() + "text"
-            textView6.transitionName = args.dataPosition._id.toString() + "text2"
+            imageView3.transitionName = args.data.id.toString() + "image"
+            textView5.transitionName = args.data.id.toString() + "text"
+            textView6.transitionName = args.data.id.toString() + "text2"
             Glide.with(this@PavilionFragment)
-                .load(args.dataPosition.E_Pic_URL)
+                .load(args.data.ePicURL)
                 .centerCrop()
                 .into(imageView3)
-            textView5.text = args.dataPosition.E_Info
-            if (args.dataPosition.E_Info == "") {
+            textView5.text = args.data.eInfo
+            if (args.data.eInfo == "") {
                 textView6.text = "無休館資訊"
             } else {
-                textView6.text = args.dataPosition.E_Memo
+                textView6.text = args.data.eMemo
             }
-            textView7.text = args.dataPosition.E_Category
+            textView7.text = args.data.eCategory
 
-            (activity as AppCompatActivity).supportActionBar?.setTitle(args.dataPosition.E_Name)
+            (activity as AppCompatActivity).supportActionBar?.setTitle(args.data.eName)
         }
     }
 }

@@ -3,25 +3,25 @@ package com.momo.zoo.ui.home
 import android.net.Uri
 import android.view.View
 import com.airbnb.epoxy.TypedEpoxyController
-import com.momo.zoo.data.DataModel
+import com.momo.zoo.data.ZooData
 import com.momo.zoo.pavilionItem
 
 class EpoxyController(private val callbacks: DetailCallbacks) :
-    TypedEpoxyController<List<DataModel.Result.DetailResult>?>() {
-    override fun buildModels(data: List<DataModel.Result.DetailResult>?) {
+    TypedEpoxyController<List<ZooData.Result.DetailResult>?>() {
+    override fun buildModels(data: List<ZooData.Result.DetailResult>?) {
         data?.forEach {
             pavilionItem {
-                id(it._id)
-                title(it.E_Name)
-                content(it.E_Info)
-                photo(Uri.parse(it.E_Pic_URL))
-                imageTransition(it._id.toString() + "image")
-                textTransition(it._id.toString() + "text")
-                text2Transition(it._id.toString() + "text2")
-                if (it.E_Memo == "") {
+                id(it.id)
+                title(it.eName)
+                content(it.eInfo)
+                photo(Uri.parse(it.ePicURL))
+                imageTransition(it.id.toString() + "image")
+                textTransition(it.id.toString() + "text")
+                text2Transition(it.id.toString() + "text2")
+                if (it.eMemo == "") {
                     closed("無休館資訊")
                 } else {
-                    closed(it.E_Memo)
+                    closed(it.eMemo)
                 }
                 onItemClickListener { view ->
                     callbacks.onDetailItemClick(it, view)
@@ -31,6 +31,6 @@ class EpoxyController(private val callbacks: DetailCallbacks) :
     }
 
     interface DetailCallbacks {
-        fun onDetailItemClick(data: DataModel.Result.DetailResult, it: View)
+        fun onDetailItemClick(data: ZooData.Result.DetailResult, it: View)
     }
 }

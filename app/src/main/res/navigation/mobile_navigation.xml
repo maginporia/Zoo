@@ -21,8 +21,8 @@
         android:label=""
         tools:layout="@layout/fragment_pavilion">
         <argument
-            android:name="dataPosition"
-            app:argType="com.momo.zoo.data.DataModel$Result$DetailResult" />
+            android:name="data"
+            app:argType="com.momo.zoo.data.ZooData$Result$DetailResult" />
     </fragment>
 
 </navigation>

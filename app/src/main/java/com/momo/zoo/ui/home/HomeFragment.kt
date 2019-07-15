@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.transition.TransitionInflater
 import com.momo.zoo.R
-import com.momo.zoo.data.DataModel
+import com.momo.zoo.data.ZooData
 import com.momo.zoo.databinding.FragmentHomeBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -64,11 +64,11 @@ class HomeFragment : Fragment(), EpoxyController.DetailCallbacks {
         })
     }
 
-    override fun onDetailItemClick(data: DataModel.Result.DetailResult, it: View) {
+    override fun onDetailItemClick(data: ZooData.Result.DetailResult, it: View) {
         val extras = FragmentNavigatorExtras(
-            it.findViewById<ImageView>(R.id.imageView2) to (data._id).toString() + "image",
-            it.findViewById<TextView>(R.id.textView3) to (data._id).toString() + "text",
-            it.findViewById<TextView>(R.id.textView4) to (data._id).toString() + "text2"
+            it.findViewById<ImageView>(R.id.imageView2) to (data.id).toString() + "image",
+            it.findViewById<TextView>(R.id.textView3) to (data.id).toString() + "text",
+            it.findViewById<TextView>(R.id.textView4) to (data.id).toString() + "text2"
         )
         findNavController().navigate(
             HomeFragmentDirections.actionNavHomeToNavPavilion(data),

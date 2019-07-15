@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class Repository(private val zooService: ZooService) {
 
-    fun getZooData(): Single<Response<DataModel>> {
+    fun getZooData(): Single<Response<ZooData>> {
         return zooService.getZooData()
     }
 }
