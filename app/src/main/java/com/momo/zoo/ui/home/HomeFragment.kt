@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.transition.TransitionInflater
 import com.momo.zoo.R
 import com.momo.zoo.data.ZooData
+import com.momo.zoo.data.network.HttpResult
 import com.momo.zoo.databinding.FragmentHomeBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -60,7 +61,16 @@ class HomeFragment : Fragment(), EpoxyController.DetailCallbacks {
         }
 
         homeViewModel.zooData.observe(viewLifecycleOwner, Observer {
-            controller.setData(it.result.results)
+            when (it) {
+                is HttpResult.Success ->
+                    if (it.data.isSuccessful) {
+                        controller.setData(it.data.body()?.result?.results)
+                    } else {
+                        TODO("error handling")
+                    }
+                is HttpResult.Error ->
+                    TODO("error handling")
+            }
         })
     }
 

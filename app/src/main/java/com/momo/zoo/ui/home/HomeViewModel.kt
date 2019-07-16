@@ -5,23 +5,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.momo.zoo.data.Repository
 import com.momo.zoo.data.ZooData
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.momo.zoo.data.network.HttpResult
 import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
+import retrofit2.Response
 
 class HomeViewModel(private val repository: Repository) : ViewModel() {
     val progress = MutableLiveData<Int>()
-    val zooData = MutableLiveData<ZooData>().apply {
+    val zooData = MutableLiveData<HttpResult<Response<ZooData>>>().apply {
         repository.getZooData()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(  // named arguments for lambda Subscribers
-                onError = { it.printStackTrace() },
+                onError = {
+                    value = HttpResult.Error(it)
+                    progress.value = View.GONE
+                },
                 onSuccess = {
-                    if (it.isSuccessful) {
-                        value = it.body()
-                        progress.value = View.GONE
-                    }
+                    value = HttpResult.Success(it)
+                    progress.value = View.GONE
                 }
             )
     }
